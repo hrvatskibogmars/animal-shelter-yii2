@@ -1,0 +1,77 @@
+{{ void(this.beginBlock('block1')) }}
+
+<div class="page-header clear-filter" filter-color="orange">
+  <div class="page-header-image" data-parallax="true" style="background-image: url('/img/bg-hero.jpg'); ">
+  </div>
+  <div class="container ">
+    <div class="content-center brand ">
+      <img class="n-logo" src="/img/new-logo-text.svg" alt=" ">
+      <h1 class="h1-seo ">Lorem Ipsum.</h1>
+      <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h3>
+    </div>
+  </div>
+</div>
+{{ void(this.endBlock()) }}
+
+{{ void(this.beginBlock('content')) }}
+
+<!-- blog postovi <-->
+<div class="section section-basic ">
+  <div class="container ">
+    <div class="row ">
+      <div class="col-md-12 ">
+        <h4 class="text-center">Novosti</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED ANIMALS< -->
+<div class="section section-basic featured-animals">
+  <div class="container ">
+    <div class="row ">
+      <div class="col-md-12">
+        <h4 class="text-center">Udomi životinju</h4>
+      </div>
+    </div>  <div class="row">
+    </div>
+    <div class="row">
+      {% for animal in rows %}
+      <div class="col-md-4">
+        <div class="card">
+          <img data-src="holder.js/100px280?theme=thumb" alt="Thumbnail [100%x280]" src="{{ animal.image }}"
+          data-holder-rendered="true" style="height: 280px; width: 100%; display: block;">
+          <div class="card-body">
+            <h5 class="card-title">{{ animal.name }}</h5>
+            <p class="card-text">{{ animal.description }}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<!-- Partneri i Sponzori< -->
+<div class="section section-basic ">
+  <div class="partneri">
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-12">
+          <h4 class="text-center"> Partneri i sponzori</h4>
+        </div>
+        <div class="col-md-12 ">
+          <img class="partner-logo" src="img/partners/drava-info-logo.png" alt="Rounded Image" class="rounded">
+          <img class="partner-logo" src="img/partners/kc-logo.jpg" alt="Rounded Image" class="rounded">
+          <img class="partner-logo" src="img/partners/komunalac-logo.jpg" alt="Rounded Image" class="rounded">
+          <img class="partner-logo" src="img/partners/podravka-logo.png" alt="Rounded Image" class="rounded">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ void(this.endBlock()) }}

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 450 412.41">
+  <defs>
+    <style>
+      .a {
+        isolation: isolate;
+      }
+
+      .b {
+        fill: #b12525;
+      }
+
+      .c {
+        fill: #d22e2e;
+      }
+
+      .d {
+        fill: #932524;
+      }
+
+      .e, .f, .i, .k, .l, .m {
+        mix-blend-mode: darken;
+      }
+
+      .e {
+        fill: url(#a);
+      }
+
+      .f {
+        fill: url(#b);
+      }
+
+      .g {
+        fill: #7a2020;
+      }
+
+      .h {
+        fill: #b72e2e;
+      }
+
+      .i {
+        fill: url(#c);
+      }
+
+      .j {
+        fill: #ba3a3a;
+      }
+
+      .k {
+        fill: url(#d);
+      }
+
+      .l {
+        fill: url(#e);
+      }
+
+      .m {
+        fill: url(#f);
+      }
+    </style>
+    <linearGradient id="a" x1="450" y1="108.05" x2="375.93" y2="108.05" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#231f20" stop-opacity="0.5"/>
+      <stop offset="1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="b" x1="220.81" y1="108.05" x2="294.89" y2="108.05" xlink:href="#a"/>
+    <linearGradient id="c" x1="220.81" y1="253.03" x2="0" y2="253.03" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#231f20" stop-opacity="0.5"/>
+      <stop offset="0.02" stop-color="#221e1f" stop-opacity="0.48"/>
+      <stop offset="0.52" stop-color="#080808" stop-opacity="0.12"/>
+      <stop offset="1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="d" x1="332.37" y1="290.71" x2="290.67" y2="266.63" xlink:href="#c"/>
+    <linearGradient id="e" x1="335.41" y1="34.02" x2="335.41" y2="129.47" xlink:href="#a"/>
+    <linearGradient id="f" x1="112.11" y1="42.38" x2="112.11" y2="133.38" xlink:href="#a"/>
+  </defs>
+  <title>sinterice-dobra-srca</title>
+  <g class="a">
+    <g>
+      <polygon class="b" points="220.81 412.41 421.33 100.84 220.81 93.65 220.81 412.41"/>
+      <polygon class="c" points="220.81 412.41 0 94.33 220.81 93.65 220.81 412.41"/>
+      <polygon class="d" points="220.81 412.41 0 94.33 81.63 165.3 97.88 165.69 220.81 412.41"/>
+      <g>
+        <polygon class="c" points="294.89 182.09 375.93 182.09 412.96 151.13 375.93 34.02 294.25 34.02 258.92 147.17 294.89 182.09"/>
+        <polygon class="d" points="422.75 182.09 375.93 34.02 450 94.42 422.75 182.09"/>
+        <polygon class="d" points="248.01 182.09 294.89 34.02 220.81 93.65 248.01 182.09"/>
+        <polygon class="d" points="294.89 182.09 375.93 182.09 335.4 129.47 294.89 182.09"/>
+        <ellipse cx="297.91" cy="108.05" rx="7.31" ry="8.04"/>
+        <ellipse cx="370.54" cy="108.05" rx="7.31" ry="8.04"/>
+        <polygon class="e" points="422.75 182.09 375.93 34.02 450 94.42 422.75 182.09"/>
+        <ellipse cx="335.41" cy="129.47" rx="7.31" ry="8.04"/>
+        <ellipse cx="335.41" cy="129.47" rx="7.31" ry="8.04"/>
+        <polygon class="f" points="248.01 182.09 294.89 34.02 220.81 93.65 248.01 182.09"/>
+      </g>
+      <polygon class="g" points="220.81 412.41 412.96 151.13 375.93 182.09 339.41 182.21 220.81 412.41"/>
+      <polygon class="h" points="220.81 412.41 412.96 151.13 375.93 182.09 339.41 182.21 220.81 412.41"/>
+      <polygon class="i" points="220.81 412.41 0 94.33 220.81 93.65 220.81 412.41"/>
+      <g>
+        <polygon class="d" points="69.01 0 0 94.42 95.98 42.38 69.01 0"/>
+        <polygon class="d" points="149.66 0 218.68 94.42 122.69 42.38 149.66 0"/>
+        <polygon class="c" points="137.84 175.87 220.81 94.45 172.45 42.38 51.37 42.38 0 94.42 81.58 176.06 137.84 175.87"/>
+        <polygon class="h" points="81.18 176.46 137.75 175.78 110.41 133.38 81.18 176.46"/>
+        <ellipse cx="68.32" cy="94.43" rx="8.47" ry="9.17"/>
+        <ellipse cx="152.49" cy="94.43" rx="8.47" ry="9.17"/>
+        <rect class="g" y="132.28" width="220.81" height="4.79"/>
+        <polygon class="g" points="1.67 114.43 218.26 159.61 219.14 154.91 2.55 109.73 1.67 114.43"/>
+        <polygon class="g" points="3.5 163.78 218.36 110.22 217.31 105.56 2.45 159.12 3.5 163.78"/>
+        <ellipse cx="110.41" cy="134.67" rx="8.47" ry="9.17"/>
+      </g>
+      <polygon class="j" points="330.12 201.36 375.93 182.09 294.89 182.09 330.12 201.36"/>
+      <polygon class="d" points="115.44 202.26 81.63 176.01 137.75 176.01 115.44 202.26"/>
+      <polygon class="h" points="335.4 129.47 375.93 34.02 294.89 34.02 335.4 129.47"/>
+      <polygon class="h" points="110.41 133.38 172.45 42.38 51.77 42.38 110.41 133.38"/>
+      <ellipse cx="110.41" cy="134.86" rx="9.62" ry="9.74"/>
+      <polygon class="k" points="220.81 412.41 412.96 151.13 375.93 182.09 339.41 182.21 220.81 412.41"/>
+      <polygon class="l" points="335.4 129.47 375.93 34.02 294.89 34.02 335.4 129.47"/>
+      <polygon class="m" points="110.41 133.38 172.45 42.38 51.77 42.38 110.41 133.38"/>
+      <ellipse cx="335.41" cy="129.47" rx="9.62" ry="9.74"/>
+    </g>
+  </g>
+</svg>
