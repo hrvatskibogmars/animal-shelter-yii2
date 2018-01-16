@@ -1,29 +1,10 @@
 version: '2'
+
 services:
-  web:
-    build: .
-    restart: always
-    volumes:
-      - ../animal-shelter-yii2:/var/www/html #php-code
-    depends_on:
-      - db
-  nginx:
-    image: nginx:1.13.8-alpine
-    restart: always
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-    depends_on:
-      - web
-    volumes_from:
-      - web
-    volumes:
-      - ../compose/nginx-conf:/etc/nginx/conf.d
-      - ../compose/nginx-logs:/var/log/nginx
-  db:
-    image: postgres:10.1-alpine
+  nginx-php-fpm:
+    image: richarvey/nginx-php-fpm:latest
     restart: always
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: sds
-      POSTGRES_PASSWORD: postgres
+      GIT_REPO: 'https://github.com/mar5/animal-shelter-yii2.git'
+      WEBROOT: '/var/www/html/frontend/'
+      PHP_ERRORS_STDERR: 1
