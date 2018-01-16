@@ -6,5 +6,5 @@ services:
     restart: always
     environment:
       GIT_REPO: 'https://github.com/mar5/animal-shelter-yii2.git'
-      WEBROOT: '/var/www/html/frontend/'
+      WEBROOT: '/var/www/html/frontend/web'
       PHP_ERRORS_STDERR: 1
