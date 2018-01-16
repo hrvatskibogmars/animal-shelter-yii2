@@ -1,10 +1,30 @@
 version: '2'
-
 services:
-  nginx-php-fpm:
-    image: richarvey/nginx-php-fpm:latest
+  php:
+    image: bscheshir/php:7.2.1-fpm-alpine-4yii2
+    restart: always
+    volumes:
+      - ./:/var/www/html #php-code
+      - ~/.composer/cache:/root/.composer/cache
+    depends_on:
+        - db
+  nginx:
+    image: nginx:1.13.8-alpine
+    restart: always
+    ports: # use nginx-proxy in same network (see ./docs/nginx-proxy.md)
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - php
+    volumes_from:
+      - php
+    volumes:
+      - ./conf/nginx-conf:/etc/nginx/conf.d #nginx-conf
+      - ./conf/nginx-logs:/var/log/nginx #nginx-logs
+  db:
+    image: postgres:10.1-alpine
     restart: always
     environment:
-      GIT_REPO: 'https://github.com/mar5/animal-shelter-yii2.git'
-      WEBROOT: '/var/www/html/frontend/web'
-      PHP_ERRORS_STDERR: 1
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: ''
+      POSTGRES_DB: 'postgres'
