@@ -22,7 +22,8 @@
         "tigrov/yii2-pgsql": "~1.0",
         "ramsey/uuid": "*",
         "yiisoft/yii2-twig": "*",
-        "kartik-v/yii2-widget-fileinput": "*"
+        "kartik-v/yii2-widget-fileinput": "*",
+        "insolita/yii2-migration-generator": "~2.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

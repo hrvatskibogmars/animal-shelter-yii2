@@ -28,3 +28,8 @@ services:
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: ''
       POSTGRES_DB: 'postgres'
+  composer:
+    image: painless/composer
+    volumes_from:
+    - php
+    working_dir: /var/www/html
