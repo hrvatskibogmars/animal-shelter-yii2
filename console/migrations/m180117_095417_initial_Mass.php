@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m180117_095417_initial_Mass extends Migration
+class m180117_103156_Mass extends Migration
 {
     public function init()
     {
@@ -13,63 +13,61 @@ class m180117_095417_initial_Mass extends Migration
 
     public function safeUp()
     {
-        $tableOptions = 'ENGINE=InnoDB';
-
         $this->createTable('{{%animal}}', [
-            'id'=> $this->primaryKey(),
-            'name'=> $this->string(255),
-            'vaccinate'=> $this->boolean(),
-            'created_at'=> $this->text()->notNull(),
-            'updated_at'=> $this->text(),
-            'birthday'=> $this->timestamp(),
-            'image'=> $this->text(),
-            'nickname'=> $this->text(),
-            'description'=> $this->text(),
-            'sex_male'=> $this->boolean(),
-            'approved'=> $this->boolean(),
-            'featured'=> $this->boolean(),
-            'foster_care'=> $this->boolean(),
-            'parasite'=> $this->boolean(),
-            'castrated'=> $this->boolean(),
-            'rabies'=> $this->boolean(),
-            'infectious_diseases'=> $this->boolean(),
+            'id'=> Schema::TYPE_PK,
+            'name'=> Schema::TYPE_STRING."(255) ",
+            'vaccinate'=> Schema::TYPE_BOOLEAN,
+            'created_at'=> Schema::TYPE_TEXT." NOT NULL",
+            'updated_at'=> Schema::TYPE_TEXT,
+            'birthday'=> Schema::TYPE_TIMESTAMP,
+            'image'=> Schema::TYPE_TEXT,
+            'nickname'=> Schema::TYPE_TEXT,
+            'description'=> Schema::TYPE_TEXT,
+            'sex_male'=> Schema::TYPE_BOOLEAN,
+            'approved'=> Schema::TYPE_BOOLEAN,
+            'featured'=> Schema::TYPE_BOOLEAN,
+            'foster_care'=> Schema::TYPE_BOOLEAN,
+            'parasite'=> Schema::TYPE_BOOLEAN,
+            'castrated'=> Schema::TYPE_BOOLEAN,
+            'rabies'=> Schema::TYPE_BOOLEAN,
+            'infectious_diseases'=> Schema::TYPE_BOOLEAN,
             'gallery'=> "varchar[]",
-            'type'=> $this->text(),
-            'breed'=> $this->text(),
-            'specie'=> $this->decimal(),
+            'type'=> Schema::TYPE_TEXT,
+            'breed'=> Schema::TYPE_TEXT,
+            'specie'=> Schema::TYPE_DECIMAL,
         ], $tableOptions);
 
 
         $this->createTable('{{%breed}}', [
-            'id'=> $this->bigPrimaryKey(),
-            'name'=> $this->text(),
-            'fk_species'=> $this->bigInteger(64),
+            'id'=> Schema::TYPE_BIGPK,
+            'name'=> Schema::TYPE_TEXT,
+            'fk_species'=> Schema::TYPE_BIGINT."(64) ",
         ], $tableOptions);
 
 
         $this->createTable('{{%migration}}', [
-            'version'=> $this->string(180)->notNull(),
-            'apply_time'=> $this->integer(32),
+            'version'=> Schema::TYPE_STRING."(180) NOT NULL",
+            'apply_time'=> Schema::TYPE_INTEGER."(32) ",
         ], $tableOptions);
 
         $this->addPrimaryKey('pk_on_migration', '{{%migration}}', ['version']);
 
         $this->createTable('{{%species}}', [
-            'id'=> $this->bigPrimaryKey(),
-            'name'=> $this->text(),
+            'id'=> Schema::TYPE_BIGPK,
+            'name'=> Schema::TYPE_TEXT,
         ], $tableOptions);
 
 
         $this->createTable('{{%user}}', [
-            'id'=> $this->primaryKey(),
-            'username'=> $this->string(255)->notNull(),
-            'auth_key'=> $this->string(32)->notNull(),
-            'password_hash'=> $this->string(255)->notNull(),
-            'password_reset_token'=> $this->string(255),
-            'email'=> $this->string(255)->notNull(),
-            'status'=> $this->smallInteger(16)->notNull()->defaultValue(10),
-            'created_at'=> $this->integer(32)->notNull(),
-            'updated_at'=> $this->integer(32)->notNull(),
+            'id'=> Schema::TYPE_PK,
+            'username'=> Schema::TYPE_STRING."(255) NOT NULL",
+            'auth_key'=> Schema::TYPE_STRING."(32) NOT NULL",
+            'password_hash'=> Schema::TYPE_STRING."(255) NOT NULL",
+            'password_reset_token'=> Schema::TYPE_STRING."(255) ",
+            'email'=> Schema::TYPE_STRING."(255) NOT NULL",
+            'status'=> Schema::TYPE_SMALLINT."(16) NOT NULL DEFAULT 10",
+            'created_at'=> Schema::TYPE_INTEGER."(32) NOT NULL",
+            'updated_at'=> Schema::TYPE_INTEGER."(32) NOT NULL",
         ], $tableOptions);
 
         $this->createIndex('user_email_key', '{{%user}}', ['email'], true);
