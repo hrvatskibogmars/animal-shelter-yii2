@@ -19,7 +19,7 @@ class m180117_132237_Mass extends Migration
             'vaccinate'=> Schema::TYPE_BOOLEAN,
             'created_at'=> Schema::TYPE_TEXT." NOT NULL",
             'updated_at'=> Schema::TYPE_TEXT,
-            'birthday'=> Schema::TYPE_TIMESTAMP."(-4) ",
+            'birthday'=> Schema::TYPE_TIMESTAMP,
             'image'=> Schema::TYPE_TEXT,
             'nickname'=> Schema::TYPE_TEXT,
             'description'=> Schema::TYPE_TEXT,
