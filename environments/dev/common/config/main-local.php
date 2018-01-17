@@ -3,7 +3,7 @@ return [
     'components' => [
       'db' => [
   'class' => 'yii\db\Connection',
-  'dsn' => 'pgsql:dbname=postgres;host=127.0.0.1;',
+  'dsn' => 'pgsql:dbname=postgres;host=db;',
   'username' => 'postgres',
   'password' => '',
   'charset' => 'utf8',

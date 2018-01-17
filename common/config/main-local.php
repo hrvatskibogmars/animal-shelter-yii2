@@ -3,7 +3,7 @@ return [
   'components' => [
     'db' => [
       'class' => 'yii\db\Connection',
-      'dsn' => 'pgsql:dbname=postgres;host=0.0.0.0;',
+      'dsn' => 'pgsql:dbname=postgres;host=db;',
       'username' => 'postgres',
       'password' => '=',
       'charset' => 'utf8',
@@ -40,9 +40,6 @@ return [
           ]
         ],
       ],
-    ],
-    'utility' => [
-      'class' => 'c006\utility\migration\Module',
     ],
   ],
 ];
