@@ -5,7 +5,6 @@ use yii\db\Migration;
 
 class m180117_132237_Mass extends Migration
 {
-
     public function init()
     {
         $this->db = 'db';
@@ -14,7 +13,7 @@ class m180117_132237_Mass extends Migration
 
     public function safeUp()
     {
-        $this->createTable('{{%animal}}',[
+        $this->createTable('{{%animal}}', [
             'id'=> Schema::TYPE_PK,
             'name'=> Schema::TYPE_STRING."(255) ",
             'vaccinate'=> Schema::TYPE_BOOLEAN,
@@ -43,19 +42,19 @@ class m180117_132237_Mass extends Migration
         ]);
 
 
-        $this->createTable('{{%breed}}',[
+        $this->createTable('{{%breed}}', [
             'id'=> Schema::TYPE_BIGPK,
             'name'=> Schema::TYPE_TEXT,
             'fk_species'=> Schema::TYPE_BIGINT."(64) ",
         ]);
 
-        $this->createTable('{{%species}}',[
+        $this->createTable('{{%species}}', [
             'id'=> Schema::TYPE_BIGPK,
             'name'=> Schema::TYPE_TEXT,
         ]);
 
 
-        $this->createTable('{{%user}}',[
+        $this->createTable('{{%user}}', [
             'id'=> Schema::TYPE_PK,
             'username'=> Schema::TYPE_STRING."(255) NOT NULL",
             'auth_key'=> Schema::TYPE_STRING."(32) NOT NULL",
@@ -67,25 +66,26 @@ class m180117_132237_Mass extends Migration
             'updated_at'=> Schema::TYPE_INTEGER."(32) NOT NULL",
         ]);
 
-        $this->createIndex('user_email_key','{{%user}}',['email'],true);
-        $this->createIndex('user_password_reset_token_key','{{%user}}',['password_reset_token'],true);
-        $this->createIndex('user_username_key','{{%user}}',['username'],true);
+        $this->createIndex('user_email_key', '{{%user}}', ['email'], true);
+        $this->createIndex('user_password_reset_token_key', '{{%user}}', ['password_reset_token'], true);
+        $this->createIndex('user_username_key', '{{%user}}', ['username'], true);
         $this->addForeignKey(
             'fk_breed_fk_species',
-            '{{%breed}}', 'fk_species',
-            '{{%species}}', 'id',
-            'CASCADE', 'CASCADE'
+            '{{%breed}}',
+            'fk_species',
+            '{{%species}}',
+            'id',
+            'CASCADE',
+            'CASCADE'
         );
     }
 
     public function safeDown()
     {
-            $this->dropForeignKey('fk_breed_fk_species', '{{%breed}}');
-            $this->dropTable('{{%animal}}');
-            $this->dropTable('{{%breed}}');
-            $this->dropTable('{{%species}}');
-            $this->dropTable('{{%user}}');
+        $this->dropForeignKey('fk_breed_fk_species', '{{%breed}}');
+        $this->dropTable('{{%animal}}');
+        $this->dropTable('{{%breed}}');
+        $this->dropTable('{{%species}}');
+        $this->dropTable('{{%user}}');
     }
 }
-A Product of Yii Software LLCPowered by Yii Framework
-2.0.13.1 PHP 7.2.1 Status 200 Route gii/default/view Log 74 Time 127 ms Memory 6.772 MB DB 17 54 ms Asset Bundles 8 Guest
