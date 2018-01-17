@@ -2,8 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\jui\DatePicker;
+use dosamigos\datepicker\DatePicker;
 use kartik\file\FileInput;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Animal */
@@ -13,38 +14,67 @@ use kartik\file\FileInput;
 <div class="col-md-6">
   <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
   <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+  <?= $form->field($model, 'chipid')->textInput(['maxlength' => true]) ?>
   <?= $form->field($model, 'nickname')->textInput() ?>
-  <?= $form->field($model, 'birthday')->widget(\yii\jui\DatePicker::className(), [
-    //'language' => 'ru',
-    //'dateFormat' => 'yyyy-MM-dd',
-    ]) ?>
+
     <?= $form->field($model, 'file')->widget(FileInput::classname(), [
       'options' => ['accept' => 'image/*'],
-    ]);?>    <?= $form->field($model, 'galleryFiles')->widget(FileInput::classname(), [
+    ]);?>
+    <?= $form->field($model, 'galleryFiles')->widget(FileInput::classname(), [
       'options' => ['multiple' => true],
     ]);?>
 
-    <?= Html::activeDropDownList($model, 'specie', $specie) ?>
-    <?= Html::activeDropDownList($model, 'breed', $breed) ?>
+    <?= $form->field($model, 'specie')->widget(Select2::classname(), [
+      'data' => $specie,
+      'options' => ['placeholder' => 'Select a state ...'],
+      'pluginOptions' => [
+        'allowClear' => true
+      ],
+    ]); ?>
+    <?= $form->field($model, 'breed')->widget(Select2::classname(), [
+      'data' => $breed,
+      'options' => ['placeholder' => 'Select a state ...'],
+      'pluginOptions' => [
+        'allowClear' => true
+      ],
+    ]); ?>
 
     <?= $form->field($model, 'description')->textarea(['rows'=>'6']) ?>
 
-  </div>
-  <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+      <?= $form->field($model, 'birthday')->widget(
+        DatePicker::className(),
+        [
+            // inline too, not bad
+             'inline' => true,
+             // modify template for custom rendering
+            'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+            'clientOptions' => [
+                'autoclose' => true,
+                'format' => 'dd-M-yyyy'
+            ]
+    ]
+    );?>
+    <?= $form->field($model, 'sex_male')->widget(Select2::classname(), [
+      'data' => [1 => 'Muško', 2 => 'Žensko'],
+      'options' => ['placeholder' => 'Select a state ...'],
+      'pluginOptions' => [
+        'allowClear' => true
+      ],
+    ]); ?>
 
-    <?= $form->field($model, 'sex_male')->checkbox() ?>
-
-    <?= $form->field($model, 'approved')->checkbox() ?>
-    <?= $form->field($model, 'featured')->checkbox() ?>
-
-    <?= $form->field($model, 'vaccinate')->checkbox() ?>
-    <?= $form->field($model, 'foster_care')->checkbox() ?>
-    <?= $form->field($model, 'parasite')->checkbox() ?>
-    <?= $form->field($model, 'castrated')->checkbox() ?>
-    <?= $form->field($model, 'rabies')->checkbox() ?>
-    <?= $form->field($model, 'infectious_diseases')->checkbox() ?>
-  </div>
-  <div class="form-group">
-    <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-  </div>
-  <?php ActiveForm::end(); ?>
+    <?= $form->field($model, 'featured')->widget(Select2::classname(), [
+      'data' => [0 => 'Udomljen', 1 => 'Udomljava se', 2 => 'Rezerviran', 3 => 'Na liječenju', 4 => 'Sakriven'],
+      'options' => ['placeholder' => 'Select a state ...'],
+      'pluginOptions' => [
+        'allowClear' => true
+      ],  ]);?>
+      <?= $form->field($model, 'featured')->checkbox() ?>
+      <?= $form->field($model, 'vaccinated')->checkbox() ?>
+      <?= $form->field($model, 'sterilized')->checkbox() ?>
+      </div>
+      <div class="form-group">
+      <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+      </div>
+      <?php ActiveForm::end(); ?>

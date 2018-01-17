@@ -3,8 +3,9 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m180117_103156_Mass extends Migration
+class m180117_101704_Mass extends Migration
 {
+
     public function init()
     {
         $this->db = 'db';
@@ -13,13 +14,15 @@ class m180117_103156_Mass extends Migration
 
     public function safeUp()
     {
-        $this->createTable('{{%animal}}', [
+        $tableOptions = 'ENGINE=postgreDB';
+
+        $this->createTable('{{%animal}}',[
             'id'=> Schema::TYPE_PK,
             'name'=> Schema::TYPE_STRING."(255) ",
             'vaccinate'=> Schema::TYPE_BOOLEAN,
             'created_at'=> Schema::TYPE_TEXT." NOT NULL",
             'updated_at'=> Schema::TYPE_TEXT,
-            'birthday'=> Schema::TYPE_TIMESTAMP,
+            'birthday'=> Schema::TYPE_TIMESTAMP."(-4) ",
             'image'=> Schema::TYPE_TEXT,
             'nickname'=> Schema::TYPE_TEXT,
             'description'=> Schema::TYPE_TEXT,
@@ -38,27 +41,27 @@ class m180117_103156_Mass extends Migration
         ], $tableOptions);
 
 
-        $this->createTable('{{%breed}}', [
+        $this->createTable('{{%breed}}',[
             'id'=> Schema::TYPE_BIGPK,
             'name'=> Schema::TYPE_TEXT,
             'fk_species'=> Schema::TYPE_BIGINT."(64) ",
         ], $tableOptions);
 
 
-        $this->createTable('{{%migration}}', [
+        $this->createTable('{{%migration}}',[
             'version'=> Schema::TYPE_STRING."(180) NOT NULL",
             'apply_time'=> Schema::TYPE_INTEGER."(32) ",
         ], $tableOptions);
 
-        $this->addPrimaryKey('pk_on_migration', '{{%migration}}', ['version']);
+        $this->addPrimaryKey('pk_on_migration','{{%migration}}',['version']);
 
-        $this->createTable('{{%species}}', [
+        $this->createTable('{{%species}}',[
             'id'=> Schema::TYPE_BIGPK,
             'name'=> Schema::TYPE_TEXT,
         ], $tableOptions);
 
 
-        $this->createTable('{{%user}}', [
+        $this->createTable('{{%user}}',[
             'id'=> Schema::TYPE_PK,
             'username'=> Schema::TYPE_STRING."(255) NOT NULL",
             'auth_key'=> Schema::TYPE_STRING."(32) NOT NULL",
@@ -70,28 +73,25 @@ class m180117_103156_Mass extends Migration
             'updated_at'=> Schema::TYPE_INTEGER."(32) NOT NULL",
         ], $tableOptions);
 
-        $this->createIndex('user_email_key', '{{%user}}', ['email'], true);
-        $this->createIndex('user_password_reset_token_key', '{{%user}}', ['password_reset_token'], true);
-        $this->createIndex('user_username_key', '{{%user}}', ['username'], true);
+        $this->createIndex('user_email_key','{{%user}}',['email'],true);
+        $this->createIndex('user_password_reset_token_key','{{%user}}',['password_reset_token'],true);
+        $this->createIndex('user_username_key','{{%user}}',['username'],true);
         $this->addForeignKey(
             'fk_breed_fk_species',
-            '{{%breed}}',
-            'fk_species',
-            '{{%species}}',
-            'id',
-            'CASCADE',
-            'CASCADE'
+            '{{%breed}}', 'fk_species',
+            '{{%species}}', 'id',
+            'CASCADE', 'CASCADE'
         );
     }
 
     public function safeDown()
     {
-        $this->dropForeignKey('fk_breed_fk_species', '{{%breed}}');
-        $this->dropTable('{{%animal}}');
-        $this->dropTable('{{%breed}}');
-        $this->dropPrimaryKey('pk_on_migration', '{{%migration}}');
-        $this->dropTable('{{%migration}}');
-        $this->dropTable('{{%species}}');
-        $this->dropTable('{{%user}}');
+            $this->dropForeignKey('fk_breed_fk_species', '{{%breed}}');
+            $this->dropTable('{{%animal}}');
+            $this->dropTable('{{%breed}}');
+            $this->dropPrimaryKey('pk_on_migration','{{%migration}}');
+            $this->dropTable('{{%migration}}');
+            $this->dropTable('{{%species}}');
+            $this->dropTable('{{%user}}');
     }
 }

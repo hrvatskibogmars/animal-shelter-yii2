@@ -37,6 +37,7 @@ class Animal extends \yii\db\ActiveRecord
         return [
             [['vaccinate'], 'boolean'],
             [['name'], 'string', 'max' => 255],
+            [['featured', 'approved'], 'boolean'],
             [['nickname', 'image'], 'string', 'on' => 'update-photo-upload'],
             [['birthday', 'description'], 'required'],
             [['created_at', 'updated_at', 'breed', 'specie'], 'integer'],
@@ -80,7 +81,8 @@ class Animal extends \yii\db\ActiveRecord
             'foster_care' => 'Udomljen',
             'parasite' => 'Paraziti',
             'castrated' => 'Kastriran',
-            'sex_male' => 'Spol: Muški'
+            'sex_male' => 'Spol: Muški',
+            'featured' => 'Istaknuti'
 
 
 
