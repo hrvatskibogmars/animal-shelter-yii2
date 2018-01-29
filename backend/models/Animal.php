@@ -35,15 +35,14 @@ class Animal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['vaccinate'], 'boolean'],
-            [['name'], 'string', 'max' => 255],
-            [['featured', 'approved'], 'boolean'],
-            [['nickname', 'image'], 'string', 'on' => 'update-photo-upload'],
+            [['vaccinated', 'sterilized','sex_male'], 'boolean'],
+            [['name', 'nickname','chipid'], 'string', 'max' => 255],
+            [['featured', 'status','type','created_at', 'updated_at', 'breed', 'specie'], 'integer'],
+            [['nickname', 'image'], 'string'],
             [['birthday', 'description'], 'required'],
-            [['created_at', 'updated_at', 'breed', 'specie'], 'integer'],
-            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg','on' => 'update-photo-upload'],
-            [['galleryFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4, 'on' => 'update-photo-upload'],
-            [['gallery'], 'each', 'rule' => ['string'], 'on' => 'update-photo-upload'],
+            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['galleryFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            [['gallery'], 'each', 'rule' => ['string']],
 
         ];
     }
@@ -76,13 +75,17 @@ class Animal extends \yii\db\ActiveRecord
             'nickname' => 'Nadimak',
             'created_at' => 'Datum kreiranja',
             'description' => 'Bilješke',
-            'vaccinate' => 'Cijepljen',
-            'file' => 'Profilna Slika',
-            'foster_care' => 'Udomljen',
-            'parasite' => 'Paraziti',
-            'castrated' => 'Kastriran',
-            'sex_male' => 'Spol: Muški',
-            'featured' => 'Istaknuti'
+            'file' => 'Profilna slika',
+            'galleryFiles' => 'Galerija slika',
+            'specie' => 'Vrsta zivotinje',
+            'breed' => 'Pasmina',
+            'sex_male' => 'Spol',
+            'status' => 'Status',
+            'featured' => 'Istaknuti oglas',
+            'birthday' => 'Datum Rođenja',
+            'vaccinated' => 'Cijepljen',
+            'sterilized' => 'Steriliziran',
+            'chipid'=> 'Broj čipa'
 
 
 
@@ -96,5 +99,78 @@ class Animal extends \yii\db\ActiveRecord
     public static function find()
     {
         return new AnimalQuery(get_called_class());
+    }
+
+    /**
+   * fetch stored image file name with complete path
+   * @return string
+   */
+    public function getImageFile()
+    {
+        return isset($this->image) ? Yii::$app->params['uploadPath'] . $this->image : null;
+    }
+
+    /**
+     * fetch stored image url
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        // return a default image placeholder if your source avatar is not found
+        $image = isset($this->image) ? $this->image : 'default_img.jpg';
+        return Yii::$app->params['uploadUrl'] . $image;
+    }
+    /**
+  * Process upload of image
+  *
+  * @return mixed the uploaded image instance
+  */
+    public function uploadImage()
+    {
+        // get the uploaded file instance. for multiple file uploads
+        // the following data will return an array (you may need to use
+        // getInstances method)
+        $image = UploadedFile::getInstance($this, 'image');
+
+        // if no image was uploaded abort the upload
+        if (empty($image)) {
+            return false;
+        }
+
+        // store the source file name
+        $this->filename = $image->name;
+        $ext = end((explode(".", $image->name)));
+
+        // generate a unique file name
+        $this->avatar = Yii::$app->security->generateRandomString().".{$ext}";
+
+        // the uploaded image instance
+        return $image;
+    }
+
+    /**
+    * Process deletion of image
+    *
+    * @return boolean the status of deletion
+    */
+    public function deleteImage()
+    {
+        $file = $this->getImageFile();
+
+        // check if file exists on server
+        if (empty($file) || !file_exists($file)) {
+            return false;
+        }
+
+        // check if uploaded file can be deleted on server
+        if (!unlink($file)) {
+            return false;
+        }
+
+        // if deletion successful, reset your file attributes
+        $this->avatar = null;
+        $this->filename = null;
+
+        return true;
     }
 }

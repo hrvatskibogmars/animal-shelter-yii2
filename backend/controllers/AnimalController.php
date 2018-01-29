@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use DateTime;
 use backend\models\Animal;
 use backend\models\Species;
 use backend\models\Breed;
@@ -117,6 +118,12 @@ class AnimalController extends Controller
         $specie = ArrayHelper::map(Species::find()->all(), 'id', 'name');
         $breed = ArrayHelper::map(Breed::find()->all(), 'id', 'name');
 
+        $model->file = $model->image;
+        //$model->galleryFiles = $model->gallery;
+
+        //2018-01-01 00:00:00
+        //$date = DateTime::createFromFormat('Y-m-d H:i:s', $model->birthday);
+        $model->birthday = $model->birthday->format('d-M-Y');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

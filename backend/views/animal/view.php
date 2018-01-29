@@ -28,10 +28,10 @@ $this->title = $model->name;
         'attributes' => [
             'name',
             'nickname',
-            'birthday:date',
+            'birthday:datetime',
             'created_at:datetime',
             'updated_at:datetime',
-            'vaccinate:boolean',
+            'vaccinated:boolean',
             'description',
             'breed',
             'specie',

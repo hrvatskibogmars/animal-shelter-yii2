@@ -84,4 +84,8 @@ class SiteController extends Controller
     {
         return $this->render('about.twig');
     }
+    public function actionFaq()
+    {
+        return $this->render('faq.twig');
+    }
 }

@@ -60,7 +60,7 @@ class AnimalSearch extends Animal
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'vaccinate' => $this->vaccinate,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['ilike', 'name', $this->name]);
